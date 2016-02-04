@@ -31,17 +31,42 @@ public class PageRank {
         System.out.println();
         
        /*2. Construction du tableau des predecesseurs de chaque sommet*/
-        float tabPreds[]=new float[LectureGrapheDuWeb.nz];
+        double tabPreds[]=new double[LectureGrapheDuWeb.nz];
         tabPreds=LectureGrapheDuWeb.ConstructionTabPreds(nomFichier, tabDebut);
         System.out.print("TabPreds : ");
         for(int i=0; i<LectureGrapheDuWeb.nz; i++) System.out.print(tabPreds[i]+"  ");
         System.out.println();
         
        /*3. Calcul du produit de la matrice */
-        float [] e={1,1,1}; System.out.print("Vecteur e : "); for(int i=0; i<e.length; i++) System.out.print(e[i]+"  ");
-        float produit[]=Matrice.produit(e,tabPreds, tabDebut);
+        double [] e={1,1,1}; System.out.print("Vecteur e : "); for(int i=0; i<e.length; i++) System.out.print(e[i]+"  ");
+        double produit[]=Matrice.produit(e,tabPreds, tabDebut);
         System.out.println();
         System.out.print("Produit : "); for(int i=0; i<produit.length; i++) System.out.print(produit[i]+"  ");
-        System.out.println();
+        System.out.println("\n\n");
+        
+        //DETERMINATION DE LA PERTINENCE DES PAGES
+        /*1. Initialisation de la pertinence de chaque sommet*/
+        double [] P=new double[LectureGrapheDuWeb.n];
+        for(int i=0; i<LectureGrapheDuWeb.n; i++) P[i]=(double)1/(double)3;
+        System.out.print("P : "); for(int i=0; i<P.length; i++) System.out.print(P[i]+"  ");
+        /*definition de la matrice H*/
+        double [][] H = new double[LectureGrapheDuWeb.n][LectureGrapheDuWeb.n];
+        int k=0;
+        System.out.println("\nMatrice H");
+        for(int i=0; i<LectureGrapheDuWeb.n; i++){
+            for(int j=0; j<tabDebut[i+1]-tabDebut[i]; j++){
+                H[i][j]=tabPreds[k++];
+                System.out.print("  "+H[i][j]);
+            }System.out.println();
+        }
+       /*Itération*/
+        int i=0;
+        double [] K;
+        do{
+           K=P;
+           P=Matrice.produit(P, tabPreds, tabDebut);
+           i++;
+        }while(Matrice.norme(P)-Matrice.norme(K)<=0.000001);
+        System.out.println("Nombre d'iteration : "+i);
     }
 }

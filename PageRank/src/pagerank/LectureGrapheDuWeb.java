@@ -19,7 +19,7 @@ public class LectureGrapheDuWeb {
     
     //METHODE D'AFFICHAGE DU GRAPHE DU WEB (lecture simple du fichier)
      public static void afficheGrapheDuWeb(String nomFichier){
-        float [] tableau;
+        double [] tableau;
         try{
             // OUVRE LE FICHIER
             BufferedReader br = new BufferedReader(new FileReader( new File(nomFichier)));                       
@@ -29,7 +29,7 @@ public class LectureGrapheDuWeb {
             // COUPE LA LIGNE SUIVANT LES ESPACES
             String [] args = tmp.split(" ");                       
             // ALLOUE NOTRE TABLEAU DE N ELEMENTS
-            tableau = new float[args.length];                       
+            tableau = new double[args.length];                       
             // COPIE CHAMP A CHAMP + AFFICHAGE
             for( int i=0;i<tableau.length;i++){
                 tableau[i] = Float.parseFloat( args[i] );                               
@@ -47,7 +47,7 @@ public class LectureGrapheDuWeb {
         int tabDebut[]=new int[4];
         tabDebut[0]=0;
         int c1=0, c2=0, c3=0; //initialisation des compteurs du nombre de predecesseursd de chaque sommet
-        float [] tableau;
+        double [] tableau;
         try{
             // OUVRE LE FICHIER
             BufferedReader br = new BufferedReader(new FileReader( new File(nomFichier)));                       
@@ -66,7 +66,7 @@ public class LectureGrapheDuWeb {
             // COUPE LA LIGNE SUIVANT LES ESPACES
             args = tmp.split(" ");                       
             // ALLOUE NOTRE TABLEAU DE N ELEMENTS
-            tableau = new float[args.length];                       
+            tableau = new double[args.length];                       
             // COPIE CHAMP A CHAMP + AFFICHAGE
             for( int i=2;i<tableau.length;i++){
                 tableau[i] = Float.parseFloat( args[i] );
@@ -87,12 +87,12 @@ public class LectureGrapheDuWeb {
     }
     
     //METHODE DE CONSTRUCTION DU TABLEAU DE DEBUT DES PREDECESSEURS DE CHAQUE SOMME
-    public static float [] ConstructionTabPreds(String nomFichier, int [] tabDebut){
-        float tabPreds[]=new float[LectureGrapheDuWeb.nz];
+    public static double [] ConstructionTabPreds(String nomFichier, int [] tabDebut){
+        double tabPreds[]=new double[LectureGrapheDuWeb.nz];
         int ips1=tabDebut[0];
         int ips2=tabDebut[1];
         int ips3=tabDebut[2];
-        float [] tableau;
+        double [] tableau;
         try{
             // OUVRE LE FICHIER
             BufferedReader br = new BufferedReader(new FileReader( new File(nomFichier)));                       
@@ -106,7 +106,7 @@ public class LectureGrapheDuWeb {
             // COUPE LA LIGNE SUIVANT LES ESPACES
             String [] args = tmp.split(" ");                       
             // ALLOUE NOTRE TABLEAU DE N ELEMENTS
-            tableau = new float[args.length];                       
+            tableau = new double[args.length];                       
             // COPIE CHAMP A CHAMP + AFFICHAGE
             for( int i=2;i<tableau.length;i++){
                 tableau[i] = Float.parseFloat( args[i] );
